@@ -13,7 +13,7 @@ import {
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
-const EthPriceChart = () => {
+const BtcPriceChart = () => {
   const [chartData, setChartData] = useState(null);
 
 useEffect(() => {
@@ -23,22 +23,22 @@ useEffect(() => {
 
     axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/ethereum/market_chart/range?vs_currency=usd&from=${specificDate}&to=${today}`
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=${specificDate}&to=${today}`
       )
       .then((res) => {
-        let weeklyEthTime = [];
-        let weeklyEthPrice = [];
+        let weeklyBtcTime = [];
+        let weeklyBtcPrice = [];
 
         for(let i = 0; i < res.data.prices.length; i += 7){
-          weeklyEthTime.push(new Date(res.data.prices[i][0]).toLocaleDateString());
-          weeklyEthPrice.push(res.data.prices[i][1]);
+          weeklyBtcTime.push(new Date(res.data.prices[i][0]).toLocaleDateString());
+          weeklyBtcPrice.push(res.data.prices[i][1]);
         }
         
         setChartData({
-          labels: weeklyEthTime,
+          labels: weeklyBtcTime,
           datasets: [{
-            label: 'ETH Price',
-            data: weeklyEthPrice,
+            label: 'BTC Price',
+            data: weeklyBtcPrice,
             backgroundColor: 'rgba(75, 192, 192, 0.6)',
             borderColor: 'rgba(75, 192, 192, 1)',
             pointBorderColor: 'rgba(75, 192, 192, 1)',
@@ -73,7 +73,7 @@ useEffect(() => {
 
   return (
     <div>
-        <h1>ETH Price Chart</h1>
+        <h1>BTC Price Chart</h1>
         <div  style={style}>
         <Line data={chartData} options={options}/>
 
@@ -82,4 +82,4 @@ useEffect(() => {
   );
 };
 
-export default EthPriceChart;
+export default BtcPriceChart;
