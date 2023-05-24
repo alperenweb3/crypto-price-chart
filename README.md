@@ -1,4 +1,4 @@
-# Ethereum Price Chart
+# Crypto Currency Price Chart
 
 This project visualizes the price of Ethereum (ETH) over the past year with weekly data points. It fetches the data from the CoinGecko API and displays it using a line chart created with Chart.js and react-chartjs-2.
 
